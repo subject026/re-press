@@ -1,11 +1,5 @@
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
-
-import stylesUrl from "~/styles/app.css";
-
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
 
 export const meta: MetaFunction = () => ({
   title: "RePress",
