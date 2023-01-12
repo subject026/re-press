@@ -2,6 +2,7 @@ node_modules
 
 /.cache
 /build
+/app/styles
 /public/build
 .env
 
