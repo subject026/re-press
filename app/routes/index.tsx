@@ -8,13 +8,15 @@ export const meta: MetaFunction = () => ({
 
 export default function IndexRoute() {
   return (
-    <div className="min-h-screen bg-sky-300 flex items-center justify-center">
+    <div className="min-h-screen bg-sky-300 text-orange-700 flex items-center justify-center">
       <div>
         <h1>Repress</h1>
         <nav>
           <ul>
             <li>
-              <Link to="jokes">Read Jokes</Link>
+              <Link to="admin" className=" underline">
+                Admin
+              </Link>
             </li>
           </ul>
         </nav>
