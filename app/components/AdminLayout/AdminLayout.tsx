@@ -1,16 +1,23 @@
+import type { SerializeFrom } from "@remix-run/node";
+import { useRouteLoaderData } from "@remix-run/react";
 import type { ReactNode } from "react";
-import Footer from "~/modules/admin/components/Footer";
-import Header from "~/modules/admin/components/Header";
-import Sidebar from "~/modules/admin/components/Sidebar";
+import Footer from "~/components/Footer";
+import Header from "~/components/Header";
+import Sidebar from "~/components/Sidebar";
+import type { loader as adminLoader } from "~/routes/admin";
 
 interface IProps {
   children: ReactNode;
 }
 
 export default function AdminLayout({ children }: IProps) {
+  const { user } = useRouteLoaderData("routes/admin") as SerializeFrom<
+    typeof adminLoader
+  >;
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <Header user={user} />
       <main className="grow grid grid-cols-12 gap-4">
         <div className="col-span-3">
           <Sidebar />
