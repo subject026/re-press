@@ -62,22 +62,8 @@ export default function InitForm({ actionData }: IProps) {
               name="confirm-password"
               type="confirm-password"
               defaultValue={""}
-              // aria-invalid={Boolean(actionData?.fieldErrors?.confirmPassword)}
-              // aria-errormessage={
-              //   actionData?.fieldErrors?.confirmPassword
-              //     ? "confirm-password-error"
-              //     : undefined
-              // }
             />
-            {/* {actionData?.fieldErrors?.confirmPassword ? (
-              <p
-                className="form-validation-error"
-                role="alert"
-                id="confirm-password-error"
-              >
-                {actionData.fieldErrors.confirmPassword}
-              </p>
-            ) : null} */}
+            {/* // TODO: add confirm password error handling */}
           </div>
           <div id="form-error-message">
             {actionData?.formError ? (
