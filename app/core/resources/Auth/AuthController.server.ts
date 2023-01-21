@@ -1,15 +1,16 @@
 import bcrypt from "bcryptjs";
 
-import { db } from "~/resources/db.server";
-
-import type { User } from "@prisma/client";
+import { redirect } from "@remix-run/node";
 import {
   commitSession,
   destroySession,
   getSession,
-} from "../../utils/session.server";
-import { redirect } from "@remix-run/node";
-export type { User } from "@prisma/client";
+} from "../../../utils/session.server";
+import { getUserByEmail } from "../User/UserController.server";
+
+import { CUser, MUser } from "../User";
+
+import type { TUser } from "../User";
 
 type LoginForm = {
   email: string;
@@ -23,15 +24,15 @@ type RegisterForm = {
 
 export async function register({ email, password }: RegisterForm) {
   const passwordHash = await bcrypt.hash(password, 10);
-  const user = await db.user.create({
-    data: { email, passwordHash },
-  });
+  const user = await MUser.create({ email, passwordHash });
   return { id: user.id, email };
 }
 
 export async function login({ email, password }: LoginForm) {
-  const user = await db.user.findUnique({
-    where: { email },
+  const user = await getUserByEmail(email, {
+    email: true,
+    id: true,
+    passwordHash: true,
   });
   if (!user) return null;
 
@@ -44,14 +45,14 @@ export async function resetUserPassword({
   email,
   password,
 }: {
-  email: User["email"];
+  email: TUser["email"];
   password: string;
 }) {
-  const hashedPassword = await bcrypt.hash(password, 10);
-  return db.user.update({
+  const passwordHash = await bcrypt.hash(password, 10);
+  return MUser.update({
     where: { email },
     data: {
-      passwordHash: hashedPassword,
+      passwordHash: passwordHash,
     },
   });
 }
@@ -85,10 +86,8 @@ export async function getUserFromSession(request: Request) {
   }
 
   try {
-    const user = await db.user.findUnique({
-      where: { id: userId },
-      select: { id: true, email: true },
-    });
+    const user = await CUser.getUserById({ id: userId });
+
     return user;
   } catch {
     throw logout(request);
