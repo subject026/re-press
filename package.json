@@ -7,11 +7,11 @@
   "scripts": {
     "build:remix": "remix build",
     "build:css": "tailwindcss -m -i ./styles/index.css -o app/styles/app.css",
-    "build": "npm run build:css && npm run build:remix",
+    "build": "yarn build:css && yarn build:remix",
     "dev:remix": "remix dev",
     "dev:css": "tailwindcss -w -i ./styles/index.css -o app/styles/app.css",
     "dev": "run-p \"dev:*\"",
-    "prod": "npm run build && npm run start",
+    "prod": "yarn build && yarn start",
     "start": "remix-serve build",
     "typecheck": "tsc -b",
     "studio": "prisma studio"
