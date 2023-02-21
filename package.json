@@ -14,7 +14,9 @@
     "prod": "yarn build && yarn start",
     "start": "remix-serve build",
     "typecheck": "tsc -b",
-    "studio": "prisma studio"
+    "studio": "prisma studio",
+    "docker:build": "docker build . -t repress",
+    "docker:run": "docker run -p 8080:8080 --name running-repress repress"
   },
   "dependencies": {
     "@prisma/client": "^4.8.1",
@@ -28,7 +30,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.29.2",
+    "@playwright/test": "^1.30.0",
     "@remix-run/dev": "^1.10.0",
     "@remix-run/eslint-config": "^1.10.0",
     "@tailwindcss/typography": "^0.5.9",
@@ -45,6 +47,6 @@
     "typescript": "^4.8.4"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   }
 }

@@ -6,13 +6,17 @@ interface IProps {
 }
 export default function LoginForm({ actionData }: IProps) {
   return (
-    <Form method="post">
-      <div>
-        <label htmlFor="email-input">Username</label>
+    <Form method="post" data-testid="login-form">
+      <div className="form-control">
+        <label className="label" htmlFor="email-input">
+          Username
+        </label>
         <input
+          className="input input-primary"
           type="text"
           id="email-input"
           name="email"
+          data-testid="email-input"
           defaultValue={actionData?.fields?.email}
           aria-invalid={Boolean(actionData?.fieldErrors?.email)}
           aria-errormessage={
@@ -25,12 +29,16 @@ export default function LoginForm({ actionData }: IProps) {
           </p>
         ) : null}
       </div>
-      <div>
-        <label htmlFor="password-input">Password</label>
+      <div className="form-control">
+        <label className="label" htmlFor="password-input">
+          Password
+        </label>
         <input
+          className="input input-primary"
           id="password-input"
           name="password"
           type="password"
+          data-testid="password-input"
           defaultValue={actionData?.fields?.password}
           aria-invalid={Boolean(actionData?.fieldErrors?.password)}
           aria-errormessage={
@@ -50,9 +58,15 @@ export default function LoginForm({ actionData }: IProps) {
           </p>
         ) : null}
       </div>
-      <button type="submit" className="button">
-        Submit
-      </button>
+      <div className="form-control pt-8">
+        <button
+          type="submit"
+          data-testid="login-button"
+          className="btn btn-primary"
+        >
+          Submit
+        </button>
+      </div>
     </Form>
   );
 }

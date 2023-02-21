@@ -90,11 +90,11 @@ export default function LoginRoute() {
   const actionData = useActionData<typeof action>();
 
   return (
-    <div className="container p-8">
-      <div className="content p-4 bg-orange-200" data-light="">
+    <>
+      <div className="container p-8 pt-32 flex flex-col justify-center prose max-w-sm m-auto">
         <h1>Login</h1>
         <LoginForm actionData={actionData} />
       </div>
-    </div>
+    </>
   );
 }

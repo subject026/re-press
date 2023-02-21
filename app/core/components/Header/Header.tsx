@@ -17,13 +17,17 @@ export default function Header({ user }: IProps) {
           <div className="user-info">
             <span>{`Hi ${user.email}`}</span>
             <Form action="/admin/logout" method="post">
-              <button type="submit" className="button">
-                Logout
+              <button
+                type="submit"
+                className="button"
+                data-testid="logout-button"
+              >
+                logout
               </button>
             </Form>
           </div>
         ) : (
-          <Link to="login">Login</Link>
+          <Link to="login">login</Link>
         )}
       </div>
     </header>
