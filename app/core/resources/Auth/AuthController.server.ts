@@ -8,7 +8,7 @@ import {
 } from "../../../utils/session.server";
 import { getUserByEmail } from "../User/UserController.server";
 
-import { CUser, MUser } from "../User";
+import { UserController, UserModel } from "../User";
 
 import type { TUser } from "../User";
 
@@ -24,7 +24,7 @@ type RegisterForm = {
 
 export async function register({ email, password }: RegisterForm) {
   const passwordHash = await bcrypt.hash(password, 10);
-  const user = await MUser.create({ email, passwordHash });
+  const user = await UserModel.create({ email, passwordHash });
   return { id: user.id, email };
 }
 
@@ -49,7 +49,7 @@ export async function resetUserPassword({
   password: string;
 }) {
   const passwordHash = await bcrypt.hash(password, 10);
-  return MUser.update({
+  return UserModel.update({
     where: { email },
     data: {
       passwordHash: passwordHash,
@@ -86,7 +86,7 @@ export async function getUserFromSession(request: Request) {
   }
 
   try {
-    const user = await CUser.getUserById({ id: userId });
+    const user = await UserController.getUserById({ id: userId });
 
     return user;
   } catch {

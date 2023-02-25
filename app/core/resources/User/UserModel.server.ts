@@ -1,13 +1,13 @@
 import { db } from "~/core/resources/db.server";
 
-import type { User } from "@prisma/client";
-export type { User as TUser } from "@prisma/client";
+import type { User as TUser } from "@prisma/client";
+export type { TUser };
 
 export async function create({
   email,
   passwordHash,
 }: {
-  email: User["email"];
+  email: TUser["email"];
   passwordHash: string;
 }) {
   return db.user.create({

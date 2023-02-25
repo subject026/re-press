@@ -3,17 +3,19 @@ version: "3.1"
 
 services:
   db:
-    container_name: repress-test-db
+    container_name: repress-dev-db
     image: postgres
     restart: always
     environment:
-      POSTGRES_DB: repress-test
-      POSTGRES_USER: testuser
-      POSTGRES_PASSWORD: testpassword
-
-  adminer:
-    container_name: repress-test-adminer
-    image: adminer
-    restart: always
+      POSTGRES_DB: repress-dev
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpassword
     ports:
-      - 8080:8080
+      - 5432:5432
+
+  # adminer:
+  #   container_name: repress-dev-adminer
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
